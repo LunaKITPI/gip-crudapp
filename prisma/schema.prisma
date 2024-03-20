@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:kolva@localhost:3306/dbgip"
+}
+
+model tblklas {
+  klascode_id       String @id @db.VarChar(255)
+  klas_beschrijving String @db.VarChar(255)
+}
+
+model tblleerlingen {
+  leerling_id         BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
+  naam                String  @db.VarChar(255)
+  voornaam            String  @db.VarChar(255)
+  straat              String  @db.VarChar(255)
+  huis_nummer         String  @db.VarChar(255)
+  postcode            BigInt
+  email               String? @db.VarChar(255)
+  geslacht            String  @db.VarChar(255)
+  klas                String  @db.VarChar(255)
+  familie_groep       BigInt
+  zitplaats           String? @db.VarChar(255)
+  aantal_uitgenodigde BigInt
+  schooljaar          String  @db.VarChar(255)
+}
+
+model tblouders {
+  ouder_id      BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
+  naam          String  @db.VarChar(255)
+  voornaam      String  @db.VarChar(255)
+  familie_groep BigInt
+  zitplaats     String? @db.VarChar(255)
+}
+
+model tblwoonplaats {
+  postcode_id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  woonplaats  String @db.VarChar(255)
+}
+
+model tblzit_plaatsen {
+  zitplaats_id String  @id @db.VarChar(255)
+  bezet        Boolean
+  type         BigInt
+}
+
+model tblzitplaats_type {
+  type_id           BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  beschrijving_type String @db.VarChar(255)
+}
