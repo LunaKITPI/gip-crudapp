@@ -24,16 +24,72 @@
     justify-content: center;
   }
   .available {
+    border-radius: 8px;
     border: 2px solid #7FBBB3;
+    height: 412.283px;
     padding: 18px;
     width: 600px;
-    text-align: left;
+    text-align: center;
   }
+  .scroll {
+    height:264px;
+    overflow: auto;
+}
+  .scroll button {
+    width:90%;
+    background:#3a464c;
+    color:#a7c080;
+    border:0px;
+    border-radius:8px;
+  }
+  .scroll button:hover {
+    background:#293136;
+  }
+  .scroll button:active {
+  background:#55544a;
+}
   #plan {
     width: 600px;
-
+    border-radius:8px;
     border: 2px solid #7FBBB3;
   }
+input {
+  background:#293136;
+  color:#d3c6aa;
+  border:0px;
+}
+ #confirm {
+  border:0px;
+  background:#3a464c;
+  color:#83c092;
+}
+ #confirm:hover {
+  background:#293136;
+}
+#confirm:active {
+  background:#55544a;
+}
+
+.unavailable {
+     border-radius: 8px;
+    border: 2px solid #7FBBB3;
+    height: 412.283px;
+    padding: 18px;
+    width: 600px;
+    text-align: center;
+      margin-left: auto;
+  margin-right: auto;
+}
+.bottomBar {
+  font-size:12px;
+  background:#d3c6aa;
+  color:#293136;
+  width:100%;
+  height:auto;
+  text-align:left;
+  padding:4px;
+  border-radius:8px;
+}
 </style>
 
 <html lang="english">
@@ -41,20 +97,69 @@
   </head>
     <body>
       <h1>ticketree</h1>
-      welcome to ticketry <br> <br> 
-    <div class="sep"></div>
+    <div class="sep"></div> <br />
+      welcome to ticketry : <br>
+    CC de Werf - Proclamatie SMI
 
     <br> <br>
     <br>
     <div class="container">
       <div class="available">
-        seat 11.12 <br>
-        seat 11.13 <br>
-        seat 11.14 <br>
-        seat 11.15 <br>
-        seat 11.16 <br>
+        filter ( rijnum.stoelnum ) <br />
+        <input> <button id="confirm"> Zoek </button>
+        <br /> <br />
+      <div class="scroll">
+        <button>seat 11.12 </button> <br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+        <button>seat 11.12 </button><br />
+      </div>
+
       </div>
       <div class="plan-venue"> <img id="plan" src="https://www.ccdewerf.be/files/download/zaalplan-schouwburg-2019-2020-website.jpg" alt=""></div>
     </div>
+<br />
+<div class="sep">  </div>
+onbeschikbaare plaatsen
+<br /><br />
+    <div class="unavailable">
+      filter ( rijnum.stoelnum ) <br />
+        <input> <button id="confirm"> Zoek </button>
+        <br /> <br />
+
+      <div class="scroll">
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+        <button>seat 11.13 </button><br />
+
+      </div>
+    </div>
+    <br /><br />
+
+
     </body>
+
 </html>
+<div class="bottomBar">
+Gemaakt door : Joshua De Wannemaeker | 6nit | nr 6 | voor GIP opdracht software 2023-2024
+    </div>
