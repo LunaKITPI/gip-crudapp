@@ -26,7 +26,7 @@
   .available {
     border-radius: 8px;
     border: 2px solid #7FBBB3;
-    height: 412.283px;
+    height: 420px;
     padding: 18px;
     width: 600px;
     text-align: center;
@@ -73,7 +73,7 @@ input {
 .unavailable {
      border-radius: 8px;
     border: 2px solid #7FBBB3;
-    height: 412.283px;
+    height: 420px;
     padding: 18px;
     width: 600px;
     text-align: center;
@@ -100,6 +100,20 @@ input {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+  }
+.right{
+    float:right;
+}
+
+.left{
+    float:left;
+}
+ .selectBox {
+    border: 0px;
+    background: #293136;
+    color: #d3c6aa;
+    font-size: 18px;
+    width:176px;
   }
 </style>
 
@@ -173,23 +187,24 @@ input {
     <br>
   <div class="mailForm">
     <form action="">
-        <label for="fnameParent"> voornaam ouder </label> <input type="text"><br>
-        <label for="nameParent"> achternaam ouder </label><input type="text"><br>
-        <label for="emailParent"> email ouder </label><input type="text"><br>
-        <label for="fnameChild"> voornaam kind </label><input type="text"><br>
-        <label for="nameChild"> achternaam kind </label><input type="text"><br>
+        <span class="left"><label for="fnameParent"> voornaam ouder   </label></span>  <span class="right"><input type="text"></span><br>
+        <span class="left"><label for="nameParent"> achternaam ouder  </label></span>  <span class="right"><input type="text"></span><br>
+        <span class="left"><label for="emailParent"> email ouder      </label></span>  <span class="right"><input type="email"></span><br>
+        <span class="left"><label for="fnameChild"> voornaam kind     </label></span>  <span class="right"><input type="text"></span><br>
+        <span class="left"><label for="nameChild"> achternaam kind    </label></span>  <span class="right"><input type="text"></span><br>
+        <span class="left"><label for="date"> datum                           </label></span> <span class="right"> <select class="selectBox"><option value="eenDatum"> een datum </option><option value="eenDatum"> een datum </option><option value="eenDatum"> een datum </option>
     </form>
+        <br/>
   </div>
+
+        <br/>
+      uw ticket zal verstuurd worden via mail
     <br><br>
 <div class="sep">  </div>
-<br /><br />
-    
+ <h2> zaal planning</h2>
       <div class="plan-venue"> <img id="plan" src="https://www.ccdewerf.be/files/download/zaalplan-schouwburg-2019-2020-website.jpg" alt=""></div>
     <br /><br />
-
-
     </body>
-
 </html>
 <div class="bottomBar">
 Gemaakt door : Joshua De Wannemaeker | 6nit | nr 6 | voor GIP opdracht software 2023-2024

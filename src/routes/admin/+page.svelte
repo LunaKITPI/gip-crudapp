@@ -1,3 +1,15 @@
+<script>
+  import { onMount } from 'svelte';
+  
+  let selectedOption = '';
+  let showYear = false;
+
+  function onChange(event) {
+    selectedOption = event.target.value;
+    showYear = selectedOption === "tblleerlingen" || selectedOption === "tblklas";
+}
+</script>
+
 <style>
   html {
     background: #333c43;
@@ -14,7 +26,7 @@
     height: 1.5px;
     background: #7FBBB3;
   }
-  #DB0 {
+  .selectBox {
     border: 0px;
     background: #293136;
     color: #d3c6aa;
@@ -68,7 +80,8 @@ input {
     border-radius: 8px;
 
     font-size: 22px;
-    height: 28px;
+    height: 34px;
+    
   }
 .containerFlex button:hover {
     background: #293136;
@@ -98,7 +111,7 @@ input {
       <div class="sep"></div> <br>
       selecteer een databank :  <br>
       selecteer een record adhv primaire sleutel
-      <select name="dabatabses" id="DB0">
+      <select name="dabatabses" id="DB0" on:change={onChange} class="selectBox">
       <option value="none">  </option>
         <option value="tblleerlingen"> leerlingen </option>
         <option value="tblwoonplaats"> woonplaats </option>
@@ -106,7 +119,17 @@ input {
         <option value="tblouders"> ouders </option>
         <option value="tblzit_plaatsen"> zit plaatsen </option>
         <option value="tblzitplaats_type"> zit plaats types</option>
-      </select> <br><br>
+      </select> <br>
+      {#if showYear}
+        sorteer op schooljaar : <select name="schooljaar" id="SY0" class="selectBox">
+      <option value="*"> alle</option>
+      <option value="2024-2025"> 2024-2025</option>
+      <option value="2023-2024"> 2023-2024</option>
+      <option value="2022-2023"> 2022-2023</option>
+      </select>
+        {/if}
+      <br>
+      <br />
       <div class="scroll">
         <button>primary key</button><br>
         <button>primary key</button><br>
@@ -125,15 +148,15 @@ input {
     <br>
       record data : <br> <br>
     <div class="stats">
-    <strong> primaire sleutel </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" readonly> <br>
+    <strong> primaire sleutel </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
     </div>
 
 <br>
@@ -151,6 +174,7 @@ input {
 <button> import (csv) </button>
       </div>
     </div>
+      <br />
   </body>
 </html>
 <div class="bottomBar">
