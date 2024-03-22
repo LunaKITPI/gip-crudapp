@@ -77,8 +77,6 @@ input {
     padding: 18px;
     width: 600px;
     text-align: center;
-      margin-left: auto;
-  margin-right: auto;
 }
 .bottomBar {
   font-size:12px;
@@ -90,6 +88,19 @@ input {
   padding:4px;
   border-radius:8px;
 }
+.virtSep {
+    width: 1px;
+    height: 412.283px; 
+    background: #7FBBB3;
+  }
+.mailForm {
+    padding: 2rem;
+    border: 1px solid #7FBBB3;
+    border-radius: 8px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>
 
 <html lang="english">
@@ -102,9 +113,12 @@ input {
     CC de Werf - Proclamatie SMI
 
     <br> <br>
+      <h2>Zitplaatsen</h2>
     <br>
+
     <div class="container">
       <div class="available">
+        <strong>beschikbaare plaatsen </strong><br>
         filter ( rijnum.stoelnum ) <br />
         <input> <button id="confirm"> Zoek </button>
         <br /> <br />
@@ -122,15 +136,11 @@ input {
         <button>seat 11.12 </button><br />
         <button>seat 11.12 </button><br />
       </div>
-
       </div>
-      <div class="plan-venue"> <img id="plan" src="https://www.ccdewerf.be/files/download/zaalplan-schouwburg-2019-2020-website.jpg" alt=""></div>
-    </div>
-<br />
-<div class="sep">  </div>
-onbeschikbaare plaatsen
-<br /><br />
-    <div class="unavailable">
+
+<div class="virtSep"></div>
+<div class="unavailable">
+        <strong>onbeschikbaare plaatsen </strong><br>
       filter ( rijnum.stoelnum ) <br />
         <input> <button id="confirm"> Zoek </button>
         <br /> <br />
@@ -154,6 +164,27 @@ onbeschikbaare plaatsen
 
       </div>
     </div>
+    </div>
+<br />
+<div class="sep"> 
+
+    </div> <br>
+<h2>bestell nu</h2>
+    <br>
+  <div class="mailForm">
+    <form action="">
+        <label for="fnameParent"> voornaam ouder </label> <input type="text"><br>
+        <label for="nameParent"> achternaam ouder </label><input type="text"><br>
+        <label for="emailParent"> email ouder </label><input type="text"><br>
+        <label for="fnameChild"> voornaam kind </label><input type="text"><br>
+        <label for="nameChild"> achternaam kind </label><input type="text"><br>
+    </form>
+  </div>
+    <br><br>
+<div class="sep">  </div>
+<br /><br />
+    
+      <div class="plan-venue"> <img id="plan" src="https://www.ccdewerf.be/files/download/zaalplan-schouwburg-2019-2020-website.jpg" alt=""></div>
     <br /><br />
 
 

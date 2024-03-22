@@ -78,6 +78,16 @@ input {
     background: #e67e80;
     color: #293136;
   }
+.bottomBar {
+  font-size:12px;
+  background:#d3c6aa;
+  color:#293136;
+  width:100%;
+  height:auto;
+  text-align:left;
+  padding:4px;
+  border-radius:8px;
+}
 </style>
 
 
@@ -137,7 +147,12 @@ input {
       <div>
 <button> delete </button>
       </div>
-
+      <div>
+<button> import (csv) </button>
+      </div>
     </div>
   </body>
 </html>
+<div class="bottomBar">
+Gemaakt door : Joshua De Wannemaeker | 6nit | nr 6 | voor GIP opdracht software 2023-2024
+    </div>
