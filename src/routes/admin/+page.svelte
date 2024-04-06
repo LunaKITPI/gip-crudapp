@@ -1,6 +1,6 @@
-<script>
+>
   import { onMount } from 'svelte';
-  
+
   let selectedOption = '';
   let showYear = false;
 
@@ -163,10 +163,10 @@ input {
       <div class="containerFlex">
       <div>
 <button> update </button>
-      </div> 
+      </div>
       <div>
 <button> insert </button>
-      </div> 
+      </div>
       <div>
 <button> delete </button>
       </div>

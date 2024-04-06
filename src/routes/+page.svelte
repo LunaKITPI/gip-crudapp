@@ -180,7 +180,7 @@ input {
     </div>
     </div>
 <br />
-<div class="sep"> 
+<div class="sep">
 
     </div> <br>
 <h2>bestell nu</h2>
