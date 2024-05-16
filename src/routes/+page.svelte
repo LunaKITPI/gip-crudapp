@@ -207,5 +207,5 @@ input {
     </body>
 </html>
 <div class="bottomBar">
-Gemaakt door : Joshua De Wannemaeker | 6nit | nr 6 | voor GIP opdracht software 2023-2024
+Gemaakt door : Joshua De Wannemaeker | 6nit | nr 5 | voor GIP opdracht software 2023-2024
     </div>

@@ -1,15 +1,13 @@
->
+<script lang="ts">
   import { onMount } from 'svelte';
-
   let selectedOption = '';
   let showYear = false;
 
   function onChange(event) {
     selectedOption = event.target.value;
     showYear = selectedOption === "tblleerlingen" || selectedOption === "tblklas";
-}
+  }
 </script>
-
 <style>
   html {
     background: #333c43;
@@ -178,5 +176,5 @@ input {
   </body>
 </html>
 <div class="bottomBar">
-Gemaakt door : Joshua De Wannemaeker | 6nit | nr 6 | voor GIP opdracht software 2023-2024
+Gemaakt door : Joshua De Wannemaeker | 6nit | nr 5 | voor GIP opdracht software 2023-2024
     </div>
