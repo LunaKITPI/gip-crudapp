@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async () => {
   return { tables: {
       klassen : await prisma.tblklas.findMany(),
-      leerlingen : await prisma.tblouders.findMany(),
+      leerlingen : await prisma.tblleerlingen.findMany(),
       ouders : await prisma.tblouders.findMany(),
       woonplaats : await prisma.tblwoonplaats.findMany(),
       zit_plaatsen : await prisma.tblzit_plaatsen.findMany(),
