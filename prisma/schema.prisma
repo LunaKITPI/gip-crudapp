@@ -16,13 +16,10 @@ model tblleerlingen {
   leerling_id         BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
   naam                String  @db.VarChar(255)
   voornaam            String  @db.VarChar(255)
-  straat              String  @db.VarChar(255)
-  huis_nummer         String  @db.VarChar(255)
-  postcode            BigInt
+  woon_id BigInt @db.UnsignedBigInt
   email               String? @db.VarChar(255)
   geslacht            String  @db.VarChar(255)
   klas                String  @db.VarChar(255)
-  familie_groep       BigInt
   zitplaats           String? @db.VarChar(255)
   aantal_uitgenodigde BigInt
   schooljaar          String  @db.VarChar(255)
@@ -32,13 +29,15 @@ model tblouders {
   ouder_id      BigInt  @id @default(autoincrement()) @db.UnsignedBigInt
   naam          String  @db.VarChar(255)
   voornaam      String  @db.VarChar(255)
-  familie_groep BigInt
+  woon_id BigInt @db.UnsignedBigInt
   zitplaats     String? @db.VarChar(255)
 }
 
 model tblwoonplaats {
-  postcode_id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
-  woonplaats  String @db.VarChar(255)
+  woon_id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  straat  String @db.VarChar(255)
+  nummer BigInt @db.UnsignedBigInt
+  postcode String @db.VarChar(4)
 }
 
 model tblzit_plaatsen {

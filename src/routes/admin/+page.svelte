@@ -1,12 +1,18 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  let selectedOption = '';
+  let selectedOption = "";
   let showYear = false;
 
   function onChange(event) {
     selectedOption = event.target.value;
     showYear = selectedOption === "tblleerlingen" || selectedOption === "tblklas";
   }
+
+
+// prisma related functions
+  import type { PageData } from './$types'
+  export let data: PageData
+  $: ({tables} = data )
+
 </script>
 <style>
   html {
@@ -110,13 +116,13 @@ input {
       selecteer een databank :  <br>
       selecteer een record adhv primaire sleutel
       <select name="dabatabses" id="DB0" on:change={onChange} class="selectBox">
-      <option value="none">  </option>
+      <option   value="none">  </option>
         <option value="tblleerlingen"> leerlingen </option>
         <option value="tblwoonplaats"> woonplaats </option>
         <option value="tblklas"> klas </option>
         <option value="tblouders"> ouders </option>
-        <option value="tblzit_plaatsen"> zit plaatsen </option>
-        <option value="tblzitplaats_type"> zit plaats types</option>
+        <option value="tblzitplaatsen"> zitplaatsen </option>
+        <option value="tblzitplaats_type"> zitplaatstypes</option>
       </select> <br>
       {#if showYear}
         sorteer op schooljaar : <select name="schooljaar" id="SY0" class="selectBox">
@@ -128,35 +134,62 @@ input {
         {/if}
       <br>
       <br />
+    {#if selectedOption === 'tblleerlingen'}
       <div class="scroll">
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-        <button>primary key</button><br>
-      </div>        <br><br>
+  {#each tables.leerlingen as leerling }
+        <button id={leerling.leerling_id} >{leerling.leerling_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+
+    {#if selectedOption === 'tblklas'}
+      <div class="scroll">
+  {#each tables.klassen as klas }
+        <button>{klas.klascode_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+
+    {#if selectedOption === 'tblouders'}
+      <div class="scroll">
+  {#each tables.ouders as ouder }
+        <button>{ouder.ouder_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+
+    {#if selectedOption === 'tblwoonplaats'}
+      <div class="scroll">
+  {#each tables.woonplaats as woonplaats }
+        <button>{woonplaats.woon_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+
+    {#if selectedOption === 'tblzitplaatsen'}
+      <div class="scroll">
+  {#each tables.zit_plaatsen as zitplaats }
+        <button>{zitplaats.zitplaats_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+
+    {#if selectedOption === 'tblzitplaats_type'}
+      <div class="scroll">
+  {#each tables.zit_plaats_type as type }
+        <button>{type.type_id}</button><br>
+  {/each}
+  </div>
+  {/if}        
+<br><br>
       <div class="sep"></div>
     <br>
       record data : <br> <br>
+  {#if selectedOption == "tblklas"}
     <div class="stats">
-    <strong> primaire sleutel </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
-    <strong> voorbeeld waarde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> klascode_id </strong> <br> <input value="" type="text"> <br>
+    <strong> klas_beschrijving </strong> <br> <input value="waarde" type="text" > <br>
     </div>
-
 <br>
       <div class="containerFlex">
       <div>
@@ -173,6 +206,137 @@ input {
       </div>
     </div>
       <br />
+
+{/if}
+  {#if selectedOption == "tblleerlingen"}
+    <div class="stats">
+    <strong> leerling_id </strong> <br> <input value="" type="text"> <br>
+    <strong> naam </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> voornaam </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> woon_id </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> email </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> klas </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> familie_groep </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> zitplaats </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> aantal_uitgenodigde </strong> <br> <input value="waarde" type="text" > <br>
+    <strong> schooljaar </strong> <br> <input value="waarde" type="text" > <br>
+    </div>
+<br>
+      <div class="containerFlex">
+      <div>
+<button> update </button>
+      </div>
+      <div>
+<button> insert </button>
+      </div>
+      <div>
+<button> delete </button>
+      </div>
+      <div>
+<button> import (csv) </button>
+      </div>
+    </div>
+      <br />
+
+{/if}
+  {#if selectedOption == "tblouders"}
+    <div class="stats">
+    <strong> ouder_id </strong> <br> <input value="" type="text"> <br>
+    <strong> naam</strong> <br> <input value="waarde" type="text" > <br>
+    <strong>voornaam </strong> <br> <input value="waarde" type="text" > <br>
+    <strong>familie_groep </strong> <br> <input value="waarde" type="text" > <br>
+    <strong>zitplaats </strong> <br> <input value="waarde" type="text" > <br>
+    </div>
+<br>
+      <div class="containerFlex">
+      <div>
+<button> update </button>
+      </div>
+      <div>
+<button> insert </button>
+      </div>
+      <div>
+<button> delete </button>
+      </div>
+      <div>
+<button> import (csv) </button>
+      </div>
+    </div>
+      <br />
+
+{/if}
+  {#if selectedOption == "tblwoonplaats"}
+    <div class="stats">
+    <strong> woon_id </strong> <br> <input value="" type="text"> <br>
+    <strong>straat  </strong> <br> <input value="waarde" type="text" > <br>
+    <strong>nummer  </strong> <br> <input value="" type="text"> <br>
+    <strong>postcode  </strong> <br> <input value="" type="text"> <br>
+    </div>
+<br>
+      <div class="containerFlex">
+      <div>
+<button> update </button>
+      </div>
+      <div>
+<button> insert </button>
+      </div>
+      <div>
+<button> delete </button>
+      </div>
+      <div>
+<button> import (csv) </button>
+      </div>
+    </div>
+      <br />
+
+{/if}
+  {#if selectedOption == "tblzitplaatsen"}
+    <div class="stats">
+    <strong> zitplaats_id </strong> <br> <input value="" type="text"> <br>
+    <strong>bezet  </strong> <br> <input value="waarde" type="text" > <br>
+    <strong>type  </strong> <br> <input value="" type="text"> <br>
+    </div>
+<br>
+      <div class="containerFlex">
+      <div>
+<button> update </button>
+      </div>
+      <div>
+<button> insert </button>
+      </div>
+      <div>
+<button> delete </button>
+      </div>
+      <div>
+<button> import (csv) </button>
+      </div>
+    </div>
+      <br />
+
+{/if}
+  {#if selectedOption == "tblzitplaats_type"}
+    <div class="stats">
+    <strong> type_id </strong> <br> <input value="" type="text"> <br>
+    <strong>beschrijvings_type  </strong> <br> <input value="" type="text"> <br>
+    </div>
+<br>
+      <div class="containerFlex">
+      <div>
+<button> update </button>
+      </div>
+      <div>
+<button> insert </button>
+      </div>
+      <div>
+<button> delete </button>
+      </div>
+      <div>
+<button> import (csv) </button>
+      </div>
+    </div>
+      <br />
+
+{/if}
   </body>
 </html>
 <div class="bottomBar">
