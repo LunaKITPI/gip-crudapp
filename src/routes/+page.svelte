@@ -1,3 +1,13 @@
+<script lang="ts">
+  import type { PageData } from './$types'
+  export let data: PageData
+  $: ({seats} = data )
+
+  let selected_btn = ""
+  const select_seat = (event) => {
+    selected_btn = event.target.id;
+  };
+</script>
 <style>
   * {
     box-sizing: border-box;
@@ -137,18 +147,9 @@ input {
         <input> <button id="confirm"> Zoek </button>
         <br /> <br />
       <div class="scroll">
-        <button>seat 11.12 </button> <br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
-        <button>seat 11.12 </button><br />
+          {#each seats.available as item}
+            <button id={item.zitplaats_id } on:click={select_seat}> plaats {item.zitplaats_id}</button>
+          {/each}
       </div>
       </div>
 
@@ -160,21 +161,9 @@ input {
         <br /> <br />
 
       <div class="scroll">
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
-        <button>seat 11.13 </button><br />
+          {#each seats.unavailable as item}
+        <button>plaats {item.zitplaats_id}</button><br />
+          {/each}
 
       </div>
     </div>
@@ -192,6 +181,7 @@ input {
         <span class="left"><label for="emailParent"> email ouder      </label></span>  <span class="right"><input type="email"></span><br>
         <span class="left"><label for="fnameChild"> voornaam kind     </label></span>  <span class="right"><input type="text"></span><br>
         <span class="left"><label for="nameChild"> achternaam kind    </label></span>  <span class="right"><input type="text"></span><br>
+        <span class="left"><label for="seatnum"> zitplaats            </label></span>  <span class="right"><input type="text" disabled bind:value={selected_btn}></span><br>
         <span class="left"><label for="date"> datum                           </label></span> <span class="right"> <select class="selectBox"><option value="eenDatum"> een datum </option><option value="eenDatum"> een datum </option><option value="eenDatum"> een datum </option>
     </form>
         <br/>
