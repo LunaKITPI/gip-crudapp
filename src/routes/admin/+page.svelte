@@ -17,6 +17,15 @@
   function selectID(event) {
     selectedID = event.target.id
   }
+
+  let inputedPass = "";
+  let logged_in = false;
+  function Login(event) {
+    // I know this isn't secure but I do NOT feel like using oAuth,, might change my mind later tho
+    if (inputedPass === tables.passwd) {
+      logged_in = true
+    }
+  }
 </script>
 <style>
   html {
@@ -84,27 +93,21 @@ input {
     padding: 2px;
     width: 100%;
   }
-.containerFlex {
-    display:flex ;
-    justify-content: center;
-    gap: 5%;
-    width: 100%;
-  }
-.containerFlex button {
+.csv_btn {
     background: #3a464c;
     color: #DBBC7F;
     border: 0px;
     border-radius: 8px;
-
+    width: 10%;
     font-size: 22px;
     height: 34px;
     
   }
-.containerFlex button:hover {
+.csv_btn:hover {
     background: #293136;
     color: #DBBC7F;
   }
-.containerFlex button:active {
+.csv_btn:active {
     background: #e67e80;
     color: #293136;
   }
@@ -119,12 +122,71 @@ input {
   padding:4px;
   border-radius:8px;
 }
+.csv_input {
+    background: #293136;
+    width: 15%;
+}
+
+button {
+    background: #3a464c;
+    color: #DBBC7F;
+    border: 0px;
+    border-radius: 8px;
+
+    font-size: 22px;
+    height: 34px;
+    
+  }
+button:hover {
+    background: #293136;
+    color: #DBBC7F;
+  }
+button:active {
+    background: #e67e80;
+    color: #293136;
+  }
+input[type="file"] {
+    width:15%;
+    margin-bottom:4px;
+}
+input[type="file"]::file-selector-button {
+    background: #3a464c;
+    color: #DBBC7F;
+    border: 0px;
+    border-radius: 8px;
+    font-size: 22px;
+    height: 34px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #293136;
+    color: #DBBC7F;
+  }
+input[type="file"]::file-selector-button:active {
+    background: #e67e80;
+    color: #293136;
+  }
+
+.login_prompt {
+  margin-left:30%;
+  margin-top: 20%;
+  width: 40%;
+}
+.login_prompt input{
+  width:70%;
+}
 </style>
 
 
 
 <html lang="english">
   <body>
+    {#if !logged_in}
+      <div class="login_prompt">
+<h1>login</h1>
+          <input type="text" name="input" bind:value={inputedPass}/> <button on:click={Login}>login</button> <br />
+      </div>
+    {:else}
     <h1> Admin Panel</h1>
       <div class="sep"></div> <br>
   <p>
@@ -163,7 +225,7 @@ input {
     {#if selectedOption === 'tblouders'}
       <div class="scroll">
   {#each tables.ouders as ouder }
-        <button>{ouder.ouder_id}</button><br>
+        <button id={ouder.ouder_id} on:click={selectID}>{ouder.ouder_id}</button><br>
   {/each}
   </div>
   {/if}        
@@ -171,7 +233,7 @@ input {
     {#if selectedOption === 'tblwoonplaats'}
       <div class="scroll">
   {#each tables.woonplaats as woonplaats }
-        <button>{woonplaats.woon_id}</button><br>
+        <button id={woonplaats.woon_id} on:click={selectID}>{woonplaats.woon_id}</button><br>
   {/each}
   </div>
   {/if}        
@@ -179,7 +241,7 @@ input {
     {#if selectedOption === 'tblzitplaatsen'}
       <div class="scroll">
   {#each tables.zit_plaatsen as zitplaats }
-        <button>{zitplaats.zitplaats_id}</button><br>
+        <button id={zitplaats.zitplaats_id} on:click={selectID}>{zitplaats.zitplaats_id}</button><br>
   {/each}
   </div>
   {/if}        
@@ -187,7 +249,7 @@ input {
     {#if selectedOption === 'tblzitplaats_type'}
       <div class="scroll">
   {#each tables.zit_plaats_type as type }
-        <button>{type.type_id}</button><br>
+        <button id={type.type_id} on:click={selectID}>{type.type_id}</button><br>
   {/each}
   </div>
   {/if}        
@@ -205,22 +267,6 @@ input {
     <strong> klas_beschrijving </strong> <br> <input value={klas.klas_beschrijving} type="text" > <br>
     </div>
 <br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
-
       {/if}
     {/each}
 {/if}
@@ -240,21 +286,6 @@ input {
     <strong> schooljaar </strong> <br> <input value={leerling.schooljaar} type="text" > <br>
     </div>
 <br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
     {/if}
   {/each}
 {/if}
@@ -269,21 +300,6 @@ input {
     <strong>zitplaats </strong> <br> <input value={ouder.zitplaats} type="text" > <br>
     </div>
 <br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
     {/if}
   {/each}
 {/if}
@@ -297,21 +313,6 @@ input {
     <strong>postcode  </strong> <br> <input value={woonplaats.postcode} type="text"> <br>
     </div>
 <br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
     {/if}
   {/each}
 {/if}
@@ -324,22 +325,6 @@ input {
     <strong>type  </strong> <br> <input value={plaats.type} type="text"> <br>
     </div>
 <br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
-
     {/if}
   {/each}
 {/if}
@@ -350,28 +335,24 @@ input {
     <strong> type_id </strong> <br> <input value={type.type_id} type="text"> <br>
     <strong>beschrijvings_type  </strong> <br> <input value={type.beschrijvings_type} type="text"> <br>
     </div>
-<br>
-      <div class="containerFlex">
-      <div>
-<button> update </button>
-      </div>
-      <div>
-<button> insert </button>
-      </div>
-      <div>
-<button> delete </button>
-      </div>
-      <div>
-<button> import (csv) </button>
-      </div>
-    </div>
-      <br />
-
     {/if}
   {/each}
 {/if}
-  </body>
-</html>
+<br />
+      <div class="sep"></div>
+      <h3>import leerlingen tabel (csv)</h3>
+<form method="POST" action="?/ReadFile" class="csv_from" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".csv"/>
+<br />
+  <button class="csv_btn"> import (csv) </button>
+  <p>refresh de pagina indien de veranderingen niet plaats vinden <br /> indien onzekerheid bekijk de DB en/of prisma studio</p>
+</form>
 <div class="bottomBar">
 Gemaakt door : Joshua De Wannemaeker | 6nit | nr 5 | voor GIP opdracht software 2023-2024
+
     </div>
+
+{/if}
+
+  </body>
+</html>
