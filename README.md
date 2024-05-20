@@ -1,38 +1,33 @@
-# create-svelte
+# over dit project
+dit project is gemaakt door mij  voor mijn eindproject software 2023-2024 in de righting networken en IT. het is een SvelteKit ticketing web app dat mysql als database gebruikt.
+om kort uitleg te geven : deze app gebruikte sveltekit ( een fullstack tool voor webapps te maken ) en prisma ( een ORM -> iets dat alle records van een database  representeerd als objecten waarbij elke kolom een atribut is )
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+## het klaarmaken van dit project
+dit is een redelijk simpel project om op uw systeem te krijgen, namelijk
+1. clone de repo
+``` bash
+git clone https://github.com/LunaKITPI/GIP-crudapp-sqlite-version.git
 ```
 
-## Developing
+2. install node.js als dit niet geinstaleerd is
+dit kan simpelweg via de node.js website https://nodejs.org
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+3. installeer de dependancies
+dit doe je door in uw cli naar het project te gaan en de volgende commando uit te voeren
+``` bash
+npm install
+```
 
-```bash
+4. run de locale server om de website te runnen
+dit kan met volgende comando
+``` bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+dit toon een localhost link, open deze in uw browser
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
+5. prisma studio
+je kan ook een visueele database editor openen om records via prisma aan te passen
+``` bash
+npx prisma studio
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
