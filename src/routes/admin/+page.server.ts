@@ -7,7 +7,6 @@ import fs from 'fs';
 import { request } from "http";
 import { password } from '$lib/server/psswd'
 
-
 export const load: PageServerLoad = async () => {
   return { tables: {
     // all mijn tabellen
@@ -21,7 +20,6 @@ export const load: PageServerLoad = async () => {
     }
   }
 }
-
 // actions -> things forms call
 export const actions : Actions = {
   // read file action die ik gebruik voor het importen van csv bestanden
@@ -52,7 +50,8 @@ export const actions : Actions = {
           aantal_uitgenodigde : 0,
           schooljaar : "2023-2024",
         }
-      })
+      });
+            WI += 1;
     })
     // Output: Array of objects, each representing a row in the CSV
   });

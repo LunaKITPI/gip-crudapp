@@ -7,7 +7,7 @@ om kort uitleg te geven : deze app gebruikte sveltekit ( een fullstack tool voor
 dit is een redelijk simpel project om op uw systeem te krijgen, namelijk
 1. clone de repo
 ``` bash
-git clone https://github.com/LunaKITPI/GIP-crudapp-sqlite-version.git
+git clone https://github.com/LunaKITPI/gip-crudapp.git
 ```
 
 2. install node.js als dit niet geinstaleerd is
