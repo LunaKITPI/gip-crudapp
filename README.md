@@ -1,13 +1,15 @@
 # over dit project
-dit project is gemaakt door mij  voor mijn eindproject software 2023-2024 in de righting networken en IT. het is een SvelteKit ticketing web app dat mysql als database gebruikt.
-om kort uitleg te geven : deze app gebruikte sveltekit ( een fullstack tool voor webapps te maken ) en prisma ( een ORM -> iets dat alle records van een database  representeerd als objecten waarbij elke kolom een atribut is )
+dit project is gemaakt door mij  voor mijn eindproject software 2023-2024 in de righting networken en IT. het is een SvelteKit ticketing web app dat mysql als database gebruikt. Ik heb een alternatieve versie heb die sqlite gebruikt ( deze repo ), deze heb ik gemaakt vanwege het gemak van een locale file te gebruiken vergeleken een locale mysql server op te starten ( die in sync is op meerdere bestanden ).
 
+gelukig is het enigste verschil in dit project ( tussen sqlite & MySql ) het schema.prisma bestand ( en de migrations hoewell deze gewoon records zijn van vorige aanpassingen aan mijn database )
+
+om kort uitleg te geven : deze app gebruikte sveltekit ( een fullstack tool voor webapps te maken ) en prisma ( een ORM -> iets dat alle records van een database  representeerd als objecten waarbij elke kolom een atribut is )
 
 ## het klaarmaken van dit project
 dit is een redelijk simpel project om op uw systeem te krijgen, namelijk
 1. clone de repo
 ``` bash
-git clone https://github.com/LunaKITPI/gip-crudapp.git
+git clone https://github.com/LunaKITPI/GIP-crudapp-sqlite-version.git
 ```
 
 2. install node.js als dit niet geinstaleerd is
