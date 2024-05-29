@@ -197,6 +197,7 @@ input[type="file"]::file-selector-button:active {
         <option value="tblklas"> klas </option>
         <option value="tblzitplaatsen"> zitplaatsen </option>
         <option value="tblzitplaats_type"> zitplaatstypes</option>
+        <option value="tblgasten"> tblgasten</option>
       </select> <br>
   {#if selectedOption == "tblleerlingen"}
   <select name="year" id="YR0" on:change={yrSelect} class="selectBox">
@@ -261,6 +262,14 @@ vull hier een filter in adhv primaire sleutel <br />
   {/each}
   {/if}
 
+    {#if selectedOption === 'tblgasten'}
+<button id="new" on:click={selectID}> new </button>
+  {#each tables.gasten as gast }
+    {#if String(gast.gast_id).includes(filter)}
+        <button id={gast.gast_id} on:click={selectID}>{gast.gast_id}</button><br>
+    {/if}
+  {/each}
+  {/if}
   </div>
 <br><br>
       <div class="sep"></div>
@@ -421,6 +430,35 @@ vull hier een filter in adhv primaire sleutel <br />
     <strong> type_id </strong> <br> <input type="id" name="id"> <br>
     <strong>beschrijving_type  </strong> <br> <input type="beschrijving" name="beschrijving"> <br> <br>
     <button formaction="?/nieuwe_type"> nieuw record </button>
+    </div>
+  </form>
+  {/if}
+{/if}
+  {#if selectedOption == "tblgasten"}
+    {#each tables.gasten as gast }
+      {#if gast.gast_id == selectedID }
+    <form method="POST" id="selectllr" enctype="multipart/form-data">
+    <div class="stats">
+    <strong> gast_id </strong> <br> <input value={gast.gast_id} type="id" name="id"> <br>
+    <strong> naam </strong> <br> <input value={gast.naam} type="naam" name="naam"> <br>
+    <strong> voornaam </strong> <br> <input value={gast.voornaam} type="voornaam" name="voornaam"> <br>
+    <strong> email </strong> <br> <input value={gast.email} type="email" name="email"> <br>
+    <strong> leerling_id </strong> <br> <input value={gast.leerling_id} type="leerling_id" name="leerling_id"> <br> <br>
+    <button formaction="?/update_gast&current_id={gast.gast_id}"> update record </button>
+    <button formaction="?/verwijder_gast&id={gast.gast_id}"> verwijder record </button>
+    </div>
+    </form>
+    {/if}
+  {/each}
+  {#if selectedID == "new"}
+    <form method="POST" id="selectllr" enctype="multipart/form-data">
+    <div class="stats">
+    <strong> gast_id </strong> <br> <input type="id" name="id"> <br>
+    <strong> naam </strong> <br> <input type="naam" name="naam"> <br>
+    <strong> voornaam </strong> <br> <input type="voornaam" name="voornaam"> <br>
+    <strong> email </strong> <br> <input type="email" name="email"> <br>
+    <strong> leerling_id </strong> <br> <input type="leerling_id" name="leerling_id"> <br> <br>
+    <button formaction="?/nieuwe_gast"> nieuw record </button>
     </div>
   </form>
   {/if}

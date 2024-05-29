@@ -26,6 +26,14 @@ model tblleerlingen {
   schooljaar          String  @db.VarChar(255)
 }
 
+model tblgasten {
+  gast_id        BigInt @id @default(autoincrement())
+  naam           String @db.VarChar(255)
+  voornaam       String @db.VarChar(255)
+  email          String @db.VarChar(255)
+  leerling_id    String @db.VarChar(255)
+}
+
 model tblwoonplaats {
   woon_id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
   straat  String @db.VarChar(255)

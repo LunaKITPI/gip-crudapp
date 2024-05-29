@@ -10,7 +10,7 @@ import type { PageServerLoad, Actions } from './$types';
 import { writeFile } from 'fs/promises';
 import csv from 'csv-parser';
 import fs from 'fs';
-import { password } from '$lib/server/psswd'
+import { emailUser, password } from '$lib/server/psswd'
 import {prisma} from '$lib/server/prisma'
 import { fail } from '@sveltejs/kit';
 import { request } from 'http';
@@ -26,6 +26,7 @@ export const load: PageServerLoad = async () => {
       woonplaats : await prisma.tblwoonplaats.findMany(),
       zit_plaatsen : await prisma.tblzit_plaatsen.findMany(),
       zit_plaats_type : await prisma.tblzitplaats_type.findMany(),
+      gasten : await prisma.tblgasten.findMany(),
       passwd : password, // NOTE dit is NIET de veiligste manier, meestal gebruik je een externe authenticatie service ( zoals oAuth ) maar ik heb het er niet ingestoken omdat ik er geen ervaring mee heb
       errMsg : errMsg,
       crudErr : crudErr,
@@ -396,7 +397,11 @@ export const actions : Actions = {
     const data = await request.formData();
     const current_id = url.searchParams.get("current_id")
     const id = data.get("id");
-    const bezet = data.get("bezet");
+    const bezetSTR = data.get("bezet");
+    let bezet = false;
+    if ( bezetSTR === "true" ) {
+      bezet = true;
+    }
     const beziter_id = data.get("beziter_id");
     const type = data.get("type");
     const db = await prisma.tblzit_plaatsen.findMany({
@@ -411,7 +416,7 @@ export const actions : Actions = {
         },
         data : {
           zitplaats_id : id,
-          bezet : Boolean(bezet),
+          bezet : bezet,
           beziter_id : beziter_id,
           type : Number(type),
         },
@@ -423,7 +428,7 @@ export const actions : Actions = {
         },
         data : {
           zitplaats_id : id,
-          bezet : Boolean(bezet),
+          bezet : bezet,
           beziter_id : beziter_id,
           type : Number(type),
         },
@@ -450,7 +455,11 @@ export const actions : Actions = {
   nieuwe_zit : async ({ request }) => {
     const data = await request.formData();
     const id = data.get("id");
-    const bezet = data.get("bezet");
+    const bezetSTR = data.get("bezet");
+    let bezet = false;
+    if ( bezetSTR === "true" ) {
+      bezet = true;
+    }
     const beziter_id = data.get("beziter_id");
     const type = data.get("type");
     const db = await prisma.tblzit_plaatsen.findMany({
@@ -462,7 +471,7 @@ export const actions : Actions = {
       await prisma.tblzit_plaatsen.create({
         data : {
           zitplaats_id : id,
-          bezet : Boolean(bezet),
+          bezet : bezet,
           beziter_id : beziter_id,
           type : Number(type),
         },
@@ -542,7 +551,91 @@ export const actions : Actions = {
       return fail(500, { msg : "deze ID bestaat all"});
     }
   },
-
+  update_gast : async ({ request, url }) => {
+    const data = await request.formData();
+    const current_id = url.searchParams.get("current_id")
+    const id = data.get("id");
+    const naam = data.get("naam");
+    const voornaam = data.get("voornaam");
+    const email = data.get("email");
+    const leerling_id = data.get("leerling_id");
+    const db = await prisma.tblgasten.findMany({
+      where : {
+        gast_id : Number(id),
+      },
+    })
+    if ( db.length === 0 ) {
+      await prisma.tblgasten.update({
+        where : {
+         gast_id : Number(current_id),
+        },
+        data : {
+          gast_id : Number(id),
+          naam : naam,
+          voornaam : voornaam,
+          email : email,
+          leerling_id : leerling_id,
+        },
+      });
+    } else if  (id === current_id)  {
+      await prisma.tblgasten.update({
+        where : {
+         gast_id : Number(current_id),
+        },
+        data : {
+          gast_id : Number(id),
+          naam : naam,
+          voornaam : voornaam,
+          email : email,
+          leerling_id : leerling_id,
+        },
+      });
+      } else {
+      crudErr = "deze primaire sleutel zit all in het database";
+      return fail(500, { msg : "deze ID bestaat all"});
+    }
+  },
+  verwijder_gast : async ({ url }) => {
+    const id = url.searchParams.get("id");
+    try {
+      await prisma.tblgasten.delete({
+        where : {
+          gast_id : Number(id),
+        }
+      })
+    } catch(Err) {
+      crudErr = "something went wrong, see the console";
+      console.error(Err);
+      return fail(500, { msg : Err});
+    }
+  },
+  nieuwe_gast : async ({ request }) => {
+    const data = await request.formData();
+    const id = data.get("id");
+    const naam = data.get("naam");
+    const voornaam = data.get("voornaam");
+    const email = data.get("email");
+    const leerling_id = data.get("leerling_id");
+    const db = await prisma.tblgasten.findMany({
+      where : {
+        gast_id : Number(id)
+      },
+    })
+    if ( db.length === 0) {
+      await prisma.tblgasten.create({
+        data : {
+          gast_id : Number(id),
+          naam : naam,
+          voornaam : voornaam,
+          email : email,
+          leerling_id : leerling_id,
+        },
+      });
+    } else {
+      crudErr = "deze primaire sleutel zit all in het database";
+      return fail(500, { msg : "deze ID bestaat all"});
+    }
+  },
   }
 
 

@@ -32,7 +32,8 @@ async function generateQRCode(text: string, outputFile: string): Promise<void> {
     // beschikbare plaatse
     available : await prisma.tblzit_plaatsen.findMany({
       where: {
-        bezet: false 
+        bezet: false,
+        type : 1,
       },
       }),
       // bezete plaatsen
@@ -52,6 +53,8 @@ export const actions : Actions = {
   sendMail : async ({ request }) => {
     // alle invul velden hun data ophalen die in de form zaten
     const data = await request.formData();
+    const naam = data.get("naam")
+    const voornaam = data.get("voornaam")
     const id  = data.get("id");
     const seat = data.get("seat");
     const key = data.get("key");
@@ -112,8 +115,17 @@ export const actions : Actions = {
           leerling_id : id
         },
         data : {
-          aantal_uitgenodigde: auth[0].aantal_uitgenodigde + 1,
+          aantal_uitgenodigde: Number(auth[0].aantal_uitgenodigde) + 1,
         },
+      })
+      // hier maken we ook een record aan die bijhoud wie er allemaal uitgenodigd word, dit slaan we op in tblgasten
+      await prisma.tblgasten.create({
+        data : {
+          naam : naam,
+          voornaam : voornaam,
+          email : email,
+          leerling_id : id
+        }
       })
       // het aanmaken van een qrcode om door te sturen
       const outputFile = String(id) + '.png'

@@ -213,6 +213,13 @@ input {
   <div class="mailForm">
     <!-- hier is ons form die we gebruiken om een email door te sturen ( via de Actions sectie in de ts file met een functie => sendMail ) -->
     <form action="?/sendMail" method="POST">
+
+<span class="left">naam</span> <!-- hier nemen we text input en geven wij de input als naam & type bv : 'email', dit kunnen we later in onze ts file gebruiken met een get request om data op te hallen -->
+        <span class="right"><input type="naam" name="naam" ></span><br>
+
+        <span class="left">voornaam</span> <!-- hier nemen we text input en geven wij de input als naam & type bv : 'email', dit kunnen we later in onze ts file gebruiken met een get request om data op te hallen -->
+        <span class="right"><input type="voornaam" name="voornaam" ></span><br>
+
         <span class="left">email adress</span> <!-- hier nemen we text input en geven wij de input als naam & type bv : 'email', dit kunnen we later in onze ts file gebruiken met een get request om data op te hallen -->
         <span class="right"><input type="email" name="email" ></span><br>
 
@@ -232,7 +239,8 @@ input {
             </select>
 </span>
           <!--  <input type="seat" bind:value={selected_btn} name="seat">    --> <br />
-        <span class="left">datum</span> <span class="right"> <!-- hier is nog een combobox voor een datum te selecteren -->
+        <span class="left">datum</span>
+    <span class="right"> <!-- hier is nog een combobox voor een datum te selecteren -->
           <select class="selectBox" type="date" name="date">
             <option value="eenDatum"> een datum </option> <!-- dummy data -->
             <option value="eenDatum"> een datum </option>
