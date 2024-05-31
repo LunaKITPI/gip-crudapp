@@ -32,6 +32,7 @@ model tblgasten {
   voornaam       String @db.VarChar(255)
   email          String @db.VarChar(255)
   leerling_id    String @db.VarChar(255)
+  zitplaats      String @db.VarChar(255)
 }
 
 model tblwoonplaats {

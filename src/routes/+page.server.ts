@@ -62,6 +62,15 @@ export const actions : Actions = {
     const email = data.get("email")
 
     // checken of elk veld ingevuld is adhv truthy values in js/ts
+    if (!naam) {
+      errmsg ="gelieve een naam in te vulen"
+      return fail(404, { naam, missing : true });
+    }
+    if (!naam) {
+     errmsg ="gelieve een voornaam in te vulen"
+     return fail(404, { voornaam, missing : true });
+    }
+
     if (!id) {
       errmsg = "gelieve een id in te vullen"
       return fail(404, { message : "id is a required field" });
@@ -124,7 +133,8 @@ export const actions : Actions = {
           naam : naam,
           voornaam : voornaam,
           email : email,
-          leerling_id : id
+          leerling_id : id,
+          zitplaats : seat,
         }
       })
       // het aanmaken van een qrcode om door te sturen
