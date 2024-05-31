@@ -44,3 +44,5 @@ de login is suboptimaal waarvoor ik mij excuseer, ik had last met oAuth te imple
 dus elke refresh vraagt opnieuw om in te loggen, om dit te ontzijlen kunt u in het bestand 'src/routes/admin/+pager.svelte' in het script segment de variabel 'logged_in' als 'true' zetten.
 deze variabel staat op lijn 27
 
+deze sql file is gemaakt adhv een python script die ook in deze repo beschikbaar is onder de naam 'seats.py'
+
