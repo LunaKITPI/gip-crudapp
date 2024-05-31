@@ -24,7 +24,7 @@
   }
 // bijhouden welke wachtwoord de gebruiker ingeeft
   let inputedPass = "";
-  let logged_in = true; // bijhouden of de gebruiker ingelogt is
+  let logged_in = false; // bijhouden of de gebruiker ingelogt is
   function Login(event) {
     // simple login systeem, zoals gezegd in de ts file is deze methode niet veilig maar heb ik gewoon geen ervaring met werken met services zoals oAuth
     if (inputedPass === tables.passwd) {
