@@ -157,6 +157,7 @@ input {
 
 <html lang="nederlands">
   <head>
+    <title>Ticketree</title>
   </head>
     <body>
       <!-- title sectie -->

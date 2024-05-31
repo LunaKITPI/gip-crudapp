@@ -20,16 +20,27 @@ dit doe je door in uw cli naar het project te gaan en de volgende commando uit t
 ``` bash
 npm install
 ```
+4. de database aanmaken
+in prisma/schema.prisma staat een beschrijving van ons database, bovenaans staat ook een url, dit url is standaart onze localhost met de db 'dbgip'
+als u all een database hebt met die naam raad ik aan dat u 'dbgip' met iets anders verandert. wanneer u de database wilt aanmaken typt u het volgende in:
+``` bash
+npx prisma migrate dev
+```
+migrate zorgt ervoor dat onze beschrijving in schema.prisma overgeschreven wordt naar ons werkelijke database
 
-4. run de locale server om de website te runnen
+5. dummy data voor de zitplaatsen
+in deze repo is er een 'seats.sql' file die u kan uitvoeren op uw database ( via bv mysql workbench ) om alvast iets van data te hebben over dde zitplaatsen
+deze zijn ingedeelt in 2 categorien, type 1 zijn vrij zitplaatsen die open staan voor bestelling, type 2 zijn zitplaatsen gereserveed voor studenten en leerkrachten, aka gereserveerd voor een soort persoon
+
+6. run de locale server om de website te runnen
 dit kan met volgende comando
 ``` bash
 npm run dev
 ```
 dit toon een localhost link, open deze in uw browser
+u kunt een admin panel vinden door '/admin' na uw url te plaatsen, het wachtwoord hiervan is 'School99'
 
-5. prisma studio
-je kan ook een visueele database editor openen om records via prisma aan te passen
-``` bash
-npx prisma studio
-```
+de login is suboptimaal waarvoor ik mij excuseer, ik had last met oAuth te implementeren op een manier dat niet prive wachtwoorden vrijstelt ( omdat deze repo openbaar staat )
+dus elke refresh vraagt opnieuw om in te loggen, om dit te ontzijlen kunt u in het bestand 'src/routes/admin/+pager.svelte' in het script segment de variabel 'logged_in' als 'true' zetten.
+deze variabel staat op lijn 27
+

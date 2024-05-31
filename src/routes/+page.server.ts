@@ -150,7 +150,7 @@ export const actions : Actions = {
           },
           to: email,
           subject: "ticket CC de Werf",
-          text : String(key) + id,
+          text : "Bedankt voor het bestellen van een ticket voor 'CC de Werf' bij ticketree! |n in de bijlage vind u een qr-code die functioneert als uw ticket",
           attachments : [{
             filename : 'ticket-CC_De_Werf.png',
             path : filePath,

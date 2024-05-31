@@ -174,6 +174,9 @@ input[type="file"]::file-selector-button:active {
 
 
 <html lang="nederlands">
+<head>
+  <title>Admin panel</title>
+</head>
   <body>
     <!-- toont login prompt waneer de gebruiker niet ingelogd is, anders toont het de rest van de web pagina -->
     {#if !logged_in}
