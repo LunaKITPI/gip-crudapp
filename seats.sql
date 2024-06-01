@@ -698,3 +698,6 @@ INSERT INTO tblzit_plaatsen (zitplaats_id, bezet, beziter_id, type) VALUES (20.3
 INSERT INTO tblzit_plaatsen (zitplaats_id, bezet, beziter_id, type) VALUES (20.33, 0, '', 1);
 INSERT INTO tblzit_plaatsen (zitplaats_id, bezet, beziter_id, type) VALUES (20.34, 0, '', 1);
 INSERT INTO tblzit_plaatsen (zitplaats_id, bezet, beziter_id, type) VALUES (20.35, 0, '', 1);
+
+INSERT INTO tblzitplaats_type (type_id, beschrijving_type) VALUES (1, "plaatsen die besteld kunnen worde")
+INSERT INTO tblzitplaats_type (type_id, beschrijving_type) VALUES (2, "plaatsen die gereserveerd zijn")
