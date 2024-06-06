@@ -38,7 +38,7 @@ model tblgasten {
 model tblwoonplaats {
   woon_id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
   straat  String @db.VarChar(255)
-  nummer BigInt @db.UnsignedBigInt
+  nummer String @db.VarChar(255)
   postcode String @db.VarChar(4)
   woonplaats String @db.VarChar(255)
   busnummer String? @db.VarChar(10)
